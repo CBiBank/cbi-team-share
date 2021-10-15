@@ -1,0 +1,26 @@
+{
+  "name": "babel-share",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "compiler": "babel './src/*' --out-dir dist-compiler",
+    "polyfill": "APP_TARGET=polyfill babel './src/*' --out-dir dist-polyfill",
+    "corejs": "APP_TARGET=corejs babel './src/*' --out-dir dist-corejs",
+    "runtime": "APP_TARGET=runtime babel './src/*' --out-dir dist-runtime",
+    "runtime-corejs2": "APP_TARGET=runtime-corejs2 babel './src/*' --out-dir dist-runtime-corejs2",
+    "runtime-corejs3": "APP_TARGET=runtime-corejs3 babel './src/*' --out-dir dist-runtime-corejs3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.8",
+    "@babel/plugin-transform-arrow-functions": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.15.8"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.15.4",
+    "@babel/runtime-corejs3": "^7.15.4"
+  }
+}
