@@ -1,8 +1,10 @@
 const express = require("express");
 const app = express();
 const Vue = require("vue");
-const vueServerRender = require("vue-server-renderer").createRenderer();
-
+const path = require("path");
+const vueServerRender = require("vue-server-renderer").createRenderer({
+  template: require("fs").readFileSync(path.join(__dirname, "./index.html"), "utf-8")
+});
 app.get('*', (request, response) => {
   const vueApp = new Vue({
     data: {

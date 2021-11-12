@@ -93,7 +93,43 @@ app.get("*", (request, response) => {
 });
 ```
 
-可以看到h1上面有一个属性：data-server-rendered="true"，这个是一个标记，表明这个页面是由vue-ssr渲染而来的
+可以看到 h1 上面有一个属性：data-server-rendered="true"，这个是一个标记，表明这个页面是由 vue-ssr 渲染而来的
+
+## vue 加入模板
+
+首先创建一个 html，并且写入内容
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Hello, SSR</title>
+  </head>
+  <body>
+    <!--vue-ssr-outlet-->
+  </body>
+</html>
+```
+
+可以看到 有一个注释`<!--vue-ssr-outlet-->`,这是不能删除的，并且内部不能添加空格，因为这是 vue 的挂在符，需要完全正确，vue 才能知道内容要挂载到哪里
+
+然后，修改 server.js，把新创建的 index.html 引入
+
+```js
+const express = require("express");
+const app = express();
+const Vue = require("vue");
+const path = require("path");
+const vueServerRender = require("vue-server-renderer").createRenderer({
+  template: require("fs").readFileSync(path.join(__dirname, "./index.html"), "utf-8")
+});
+...
+```
+
+重启服务，已经可以看到，成功的渲染了一个 html 页面
 
 # webpack-demo
 
