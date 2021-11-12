@@ -3,7 +3,7 @@ const createRouter = require("./router")
 
 module.exports = (context) => {
   const router = createRouter();
-  return new Vue({
+  const app = new Vue({
     router,
     data: {
       message: "Hello,Vue SSR!",
@@ -23,4 +23,9 @@ module.exports = (context) => {
       </div>
     `
   });
+  return {
+    app,
+    router
+  }
+
 }

@@ -195,7 +195,92 @@ module.exports = (context) => {
 };
 ```
 
-然后，在server.js 中，进行引用，重启服务
+然后，在 server.js 中，进行引用，重启服务
+
+我们看到页面已经渲染成功，但是点击路由时候，url 有变化，但是内容没有变化。
+
+这是因为我们把页面渲染工作交给了服务器端，页面修改路由切换，还是在前端执行，并未通知到服务端，所以服务端渲染的页面不会有变化
+
+## 服务端控制页面路由
+
+在 src 下创建 entry-server.js 文件，是服务端入口文件，接口 app（渲染内容）和 router(路由)实例：
+
+```js
+const createApp = require("./app.js");
+
+module.exports = (context) => {
+  return new Promise(async (reslove, reject) => {
+    let { url } = context;
+
+    let { app, router } = createApp(context);
+    router.push(url);
+    //  router回调函数
+    //  当所有异步请求完成之后就会触发
+    router.onReady(() => {
+      let matchedComponents = router.getMatchedComponents();
+      if (!matchedComponents.length) {
+        return reject();
+      }
+      reslove(app);
+    }, reject);
+  });
+};
+```
+
+添加 entry-client.js 文件，作为客户端入口，将路由挂在到 app 内：
+
+```js
+const createApp = require("./app.js");
+let { app, router } = createApp({});
+
+router.onReady(() => {
+  app.$mount("#app");
+});
+```
+
+修改 app.js，将实例暴露出去：
+
+```js
+const app = new Vue({
+  ...
+})
+return {
+  app,
+  router
+}
+```
+
+最后修改 server.js
+
+```js
+const App = require("./src/entry-server.js");
+
+let path = require("path");
+const vueServerRender = require("vue-server-renderer").createRenderer({
+  template: require("fs").readFileSync(
+    path.join(__dirname, "./index.html"),
+    "utf-8"
+  ),
+});
+
+app.get("*", async (request, response) => {
+  let { url } = request;
+  let vm;
+  vm = await App({ url });
+
+  response.status(200);
+  response.setHeader("Content-type", "text/html;charset-utf-8");
+
+  vueServerRender
+    .renderToString(vm)
+    .then((html) => {
+      response.end(html);
+    })
+    .catch((err) => console.log(err));
+});
+```
+
+重启服务，可以路由变化页面也已经发生改变
 
 # webpack-demo
 
