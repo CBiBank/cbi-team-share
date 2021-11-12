@@ -282,6 +282,40 @@ app.get("*", async (request, response) => {
 
 重启服务，可以路由变化页面也已经发生改变
 
+## 数据传递
+
+修改 entry-server.js，进行同步和异步获取数据
+
+```js
+const getData = function () {
+  return new Promise((reslove, reject) => {
+    let str = 'this is a async data!';
+    reslove(str);
+  })
+}
+
+...
+// 数据传递
+context.propsData = "this is a data from props!";
+
+context.asyncData = await getData();
+...
+```
+
+修改 app.js，接收数据并渲染,
+
+```js
+data: {
+  message: "Hello,Vue SSR!",
+  propsData: context.propsData,
+  asyncData: context.asyncData
+}
+```
+
+保存运行，可以看到同步和异步的数据，都能再源代码中展示
+
+并且，还可以再server.js的request中，将数据传递下去
+
 # webpack-demo
 
 结合 `vue` 官方提供插件 `vue-server-renderer` 进行配置

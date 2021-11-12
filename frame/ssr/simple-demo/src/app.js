@@ -7,10 +7,14 @@ module.exports = (context) => {
     router,
     data: {
       message: "Hello,Vue SSR!",
+      propsData: context.propsData,
+      asyncData: context.asyncData
     },
     template: `
       <div>
         <h1>{{message}}</h1>
+        <p>{{asyncData}}</p>
+        <p>{{propsData}}</p>
         <ul>
           <li>
             <router-link to="/">home</router-link>
