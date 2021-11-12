@@ -131,6 +131,72 @@ const vueServerRender = require("vue-server-renderer").createRenderer({
 
 重启服务，已经可以看到，成功的渲染了一个 html 页面
 
+## 为 vue 项目添加路由
+
+首先创建 src，然后在 src 下添加 router
+
+```js
+const vueRouter = require("vue-router");
+const Vue = require("vue");
+
+Vue.use(vueRouter);
+
+module.exports = () => {
+  return new vueRouter({
+    mode: "history", // 注意，此处必须为history，否则跳转页面无法进行更新
+    routes: [
+      {
+        path: "/",
+        component: {
+          template: `<h1>this is home page</h1>`,
+        },
+        name: "home",
+      },
+      {
+        path: "/about",
+        component: {
+          template: `<h1>this is about page</h1>`,
+        },
+        name: "about",
+      },
+    ],
+  });
+};
+```
+
+并添加入口文件 app.js
+
+```js
+const Vue = require("vue");
+const createRouter = require("./router");
+
+module.exports = (context) => {
+  const router = createRouter();
+  return new Vue({
+    router,
+    data: {
+      message: "Hello,Vue SSR!",
+    },
+    template: `
+      <div>
+        <h1>{{message}}</h1>
+        <ul>
+          <li>
+            <router-link to="/">home</router-link>
+          </li>
+          <li>
+            <router-link to="/about">about</router-link>
+          </li>
+        </ul>
+        <router-view></router-view>
+      </div>
+    `,
+  });
+};
+```
+
+然后，在server.js 中，进行引用，重启服务
+
 # webpack-demo
 
 结合 `vue` 官方提供插件 `vue-server-renderer` 进行配置
