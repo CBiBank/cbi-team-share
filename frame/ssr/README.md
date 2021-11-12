@@ -60,7 +60,40 @@ app.listen(port, () => {
  }
 ```
 
-启动 `3000` 端口
+启动 `3000` 端口可以看到已经返回一个字符串，并且在页面上渲染成功
+
+## 加入 vue
+
+想要加入 vue，需要引入依赖 `vue-server-renderer`
+
+然后对 server.js 进行改造
+
+```js
+const express = require("express");
+const app = express();
+const Vue = require("vue");
+const vueServerRender = require("vue-server-renderer").createRenderer();
+
+app.get("*", (request, response) => {
+  const vueApp = new Vue({
+    data: {
+      message: "hello, ssr",
+    },
+    template: `<h1>{{message}}</h1>`,
+  });
+
+  response.status(200);
+  response.setHeader("Content-type", "text/html;charset-utf-8");
+  vueServerRender
+    .renderToString(vueApp)
+    .then((html) => {
+      response.end(html);
+    })
+    .catch((err) => console.log(err));
+});
+```
+
+可以看到h1上面有一个属性：data-server-rendered="true"，这个是一个标记，表明这个页面是由vue-ssr渲染而来的
 
 # webpack-demo
 
