@@ -1,0 +1,58 @@
+Arguments: 
+  /Users/xuyujian/.nvm/versions/node/v10.24.1/bin/node /Users/xuyujian/.yarn/bin/yarn.js
+
+PATH: 
+  /Users/xuyujian/.jenv/shims:/Users/xuyujian/.jenv/bin:/usr/local/apache-maven-3.2.5/bin:/Users/xuyujian/.nvm/versions/node/v10.24.1/bin:/usr/local/sbin:/usr/local/bin:/Users/xuyujian/.jenv/shims:/Users/xuyujian/.jenv/bin:/Users/xuyujian/.jenv/shims:/Users/xuyujian/.jenv/bin:/Users/xuyujian/.jenv/shims:/Users/xuyujian/.jenv/bin:/Users/xuyujian/.jenv/shims:/Users/xuyujian/.jenv/bin:/Users/xuyujian/.yarn/bin:/Users/xuyujian/.config/yarn/global/node_modules/.bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/xuyujian/.jenv/shims:/Users/xuyujian/.jenv/bin:/usr/local/apache-maven-3.2.5/bin:/usr/local/sbin:/Users/xuyujian/.yarn/bin:/Users/xuyujian/.config/yarn/global/node_modules/.bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  10.24.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/ant-design-vue: ETIMEDOUT
+      at Timeout._onTimeout (/Users/xuyujian/.yarn/lib/cli.js:141409:19)
+      at ontimeout (timers.js:436:11)
+      at tryOnTimeout (timers.js:300:5)
+      at listOnTimeout (timers.js:263:5)
+      at Timer.processTimers (timers.js:223:10)
+
+npm manifest: 
+  {
+    "name": "ssr-demo",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+      "dev": "nuxt",
+      "build": "nuxt build",
+      "start": "nuxt start",
+      "generate": "nuxt generate",
+      "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
+      "lint": "yarn lint:js"
+    },
+    "dependencies": {
+      "ant-design-vue": "^1.7.6",
+      "core-js": "^3.15.1",
+      "nuxt": "^2.15.7"
+    },
+    "devDependencies": {
+      "@babel/eslint-parser": "^7.14.7",
+      "@nuxt/types": "^2.15.7",
+      "@nuxt/typescript-build": "^2.1.0",
+      "@nuxtjs/eslint-config-typescript": "^6.0.1",
+      "@nuxtjs/eslint-module": "^3.0.2",
+      "eslint": "^7.29.0",
+      "eslint-plugin-nuxt": "^2.0.0",
+      "eslint-plugin-vue": "^7.12.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
