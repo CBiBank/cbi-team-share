@@ -1,10 +1,10 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 var _utils = _interopRequireDefault(require("./utils"));
 
-require("core-js/stable");
-
-require("regenerator-runtime/runtime");
+require("@babel/polyfill");
 
 var _this = void 0;
 
@@ -14,38 +14,94 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } else if (call !== void 0) { throw new TypeError("Derived constructors may only return object or undefined"); } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-_utils.default.getName(); // import '@babel/polyfill'
+_utils.default.getName();
 
-
+// import 'core-js/stable'
+// import 'regenerator-runtime/runtime'
 // 1.arrow function
 var arrowFun = function arrowFun() {
   console.log('arrow-function', _this);
 }; // 2.class
 
 
-var Person = /*#__PURE__*/function () {
-  function Person(name) {
-    _classCallCheck(this, Person);
+var Factory = /*#__PURE__*/function () {
+  function Factory(name, age) {
+    _classCallCheck(this, Factory);
 
     this.name = name;
+    this.age = age;
+    this.hobbyMap = {
+      read: true,
+      write: true
+    };
   }
 
-  _createClass(Person, [{
+  _createClass(Factory, [{
+    key: "getName",
+    value: function getName() {
+      return this.name;
+    }
+  }], [{
     key: "say",
     value: function say() {
       alert('hello');
     }
   }]);
 
-  return Person;
-}(); // 3.promise es6新增
+  return Factory;
+}();
 
+Factory.play = function () {
+  alert('play');
+};
+
+var Person = /*#__PURE__*/function (_Factory) {
+  _inherits(Person, _Factory);
+
+  var _super = _createSuper(Person);
+
+  function Person(name, age, job) {
+    var _this2;
+
+    _classCallCheck(this, Person);
+
+    // super(name)
+    _this2.age = age;
+    _this2.job = job;
+    return _possibleConstructorReturn(_this2);
+  }
+
+  _createClass(Person, [{
+    key: "getJob",
+    value: function getJob() {
+      return this.job;
+    }
+  }]);
+
+  return Person;
+}(Factory);
+
+var p = new Person('yxp', 19, 'programmer'); // 3.promise es6新增
 
 var promise = new Promise(function (resolve, reject) {
   setTimeout(function () {

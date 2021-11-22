@@ -3,7 +3,7 @@
 import utils from './utils'
 utils.getName()
 
-// import '@babel/polyfill'
+import '@babel/polyfill'
 // import 'core-js/stable'
 // import 'regenerator-runtime/runtime'
 // 1.arrow function
@@ -12,14 +12,36 @@ const arrowFun = () => {
 }
 
 // 2.class
-class Person {
-  constructor(name) {
+class Factory {
+  constructor(name, age) {
     this.name = name
+    this.age = age
+    this.hobbyMap = {
+      read: true,
+      write: true
+    }
   }
-  say() {
+  getName() {
+    return this.name
+  }
+  static say() {
     alert('hello')
   }
 }
+Factory.play = function() {
+  alert('play')
+}
+class Person extends Factory {
+  constructor(name, age, job) {
+    // super(name)
+    this.age = age
+    this.job = job
+  }
+  getJob() {
+    return this.job
+  }
+}
+var p = new Person('yxp', 19, 'programmer')
 
 // 3.promise es6新增
 const promise = new Promise((resolve, reject) => {
