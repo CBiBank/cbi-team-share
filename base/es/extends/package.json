@@ -1,0 +1,16 @@
+{
+  "name": "extends",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "babel": "babel './src/4.class-extends.js' --out-dir dist"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.16.4"
+  },
+  "dependencies": {}
+}
