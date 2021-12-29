@@ -1,0 +1,8 @@
+<!--pages/home/home.wxml-->
+<scroll-view class="container">
+ <block wx:for="{{todoList}}">
+ <view  style="margin: 10px 0">
+  <todo info="{{item}}"></todo>
+ </view>
+</block>
+</scroll-view>

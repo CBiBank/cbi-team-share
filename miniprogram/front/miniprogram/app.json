@@ -1,0 +1,45 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/add/add",
+        "pages/love/love",
+        "pages/person/person"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "待办记录本",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "selectedColor": "#1afa29",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "iconPath": "images/icons/editor.png",
+                "selectedIconPath": "images/icons/editor-selected.png"
+            },
+            {
+                "pagePath": "pages/add/add",
+                "text": "添加",
+                "iconPath": "images/icons/add.png",
+                "selectedIconPath": "images/icons/add-selected.png"
+            },
+            {
+                "pagePath": "pages/love/love",
+                "text": "喜欢",
+                "iconPath": "images/icons/favorites.png",
+                "selectedIconPath": "images/icons/favorites-selected.png"
+            },
+            {
+                "pagePath": "pages/person/person",
+                "text": "我的",
+                "iconPath": "images/icons/bussiness.png",
+                "selectedIconPath": "images/icons/bussiness-selected.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
+}

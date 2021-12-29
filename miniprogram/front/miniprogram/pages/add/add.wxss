@@ -1,0 +1,27 @@
+/* pages/add/add.wxss */
+.container {
+    width: 100%;
+    height: 100vh;
+    /* background-image: url(https://s2.loli.net/2021/12/10/cLHgZteCFJx4Ooq.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center; */
+}
+.page-section {
+    padding: 10rpx 50rpx;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.beauty-input {
+    border: 1px solid #E7A272;
+    height: 30rpx;
+    padding: 10rpx;
+    border-radius: 4rpx;
+  }
+  
+  .beauty-label {
+    padding: 10rpx 0;
+    color: #f16908;
+  }

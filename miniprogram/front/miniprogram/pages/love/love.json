@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "todo": "../../components/todo/todo"
+  },
+  "navigationBarTitleText": "喜欢",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#F6D3D1"
+}
