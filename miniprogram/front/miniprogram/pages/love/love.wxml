@@ -1,0 +1,9 @@
+<!--pages/love/love.wxml-->
+<view class="container">
+<view style="padding: 0 10rpx;">
+ <block wx:for="{{todoLikeList}}" wx:key="{{item.todo_id}}">
+  <todo info="{{item}}"></todo>
+ </block>
+  
+</view>
+</view>

@@ -1,0 +1,8 @@
+<!--components/todo/todo.wxml-->
+<view class="container flex align-center just-space-between">
+ <view class="tag base"></view>
+ <view class=" content flex flex-1 flex-direction-column text-align-left padding-left-10">
+   <text class="name">{{info.name}}</text>
+   <text class="desc">{{info.desc}}</text>
+ </view>
+</view>

@@ -1,0 +1,122 @@
+{
+  "menus": {
+    "en-US": {
+      "*": [
+        {
+          "path": "/",
+          "title": "前言",
+          "meta": {}
+        },
+        {
+          "title": "小程序生态",
+          "path": "/develop",
+          "meta": {},
+          "children": [
+            {
+              "path": "/develop/develop",
+              "title": "后台管理",
+              "meta": {
+                "order": 1
+              }
+            }
+          ]
+        },
+        {
+          "title": "扩展",
+          "path": "/extend",
+          "meta": {},
+          "children": [
+            {
+              "path": "/extend/extend",
+              "title": "小程序框架、跨端研发、云开发",
+              "meta": {
+                "order": 999
+              }
+            }
+          ]
+        },
+        {
+          "title": "框架",
+          "path": "/framework",
+          "meta": {},
+          "children": [
+            {
+              "path": "/framework/lifecycle",
+              "title": "小程序底层架构",
+              "meta": {
+                "order": 9
+              }
+            }
+          ]
+        },
+        {
+          "title": "示例",
+          "path": "/guide",
+          "meta": {},
+          "children": [
+            {
+              "path": "/guide/basic",
+              "title": "目录与代码",
+              "meta": {
+                "order": 0
+              }
+            }
+          ]
+        },
+        {
+          "title": "Programmer",
+          "path": "/programmer",
+          "meta": {},
+          "children": [
+            {
+              "path": "/programmer/wxml",
+              "title": "WXML",
+              "meta": {
+                "order": 1
+              }
+            },
+            {
+              "path": "/programmer/wxs",
+              "title": "WXS（WeiXin Script)",
+              "meta": {}
+            },
+            {
+              "path": "/programmer/wxss",
+              "title": "wxss",
+              "meta": {}
+            }
+          ]
+        },
+        {
+          "title": "常见问题",
+          "path": "/qa",
+          "meta": {},
+          "children": [
+            {
+              "path": "/qa/qa",
+              "title": "常用API",
+              "meta": {
+                "order": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "locales": [
+    {
+      "name": "en-US",
+      "label": "English"
+    }
+  ],
+  "navs": {},
+  "title": "CBI-FE Share",
+  "logo": "https://img2.baidu.com/it/u=1635495133,3359646690&fm=26&fmt=auto",
+  "mode": "doc",
+  "repository": {
+    "url": "",
+    "branch": "master"
+  },
+  "theme": {}
+}

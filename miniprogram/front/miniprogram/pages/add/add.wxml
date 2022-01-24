@@ -1,0 +1,32 @@
+<!--pages/add/add.wxml-->
+<view class="container">
+    <form catchsubmit="formSubmit" catchreset="formReset">
+     <view class="page-section">
+        <view class="beauty-label">待办名称</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <input class="beauty-input" name="todoName" placeholder="请输入待办名称" />
+            </view>
+          </view>
+        </view>
+      </view>
+     <view class="page-section">
+        <view class="beauty-label">待办内容</view>
+        <view >
+            <view class="weui-cell__bd" style="margin: 30rpx 0" >
+              <textarea  style="min-height: 200rpx;width: 100%;" class="beauty-input" name="todoContent" placeholder="请输入待办内容" />
+          </view>
+        </view>
+      </view>
+      <view class="page-section page-section-gap">
+        <view class="beauty-label">标记为喜欢</view>
+        <switch name="switch"/>
+      </view>
+
+      <view class="btn-area">
+        <button style="margin: 30rpx 0" type="default" formType="submit">提交</button>
+        <button style="margin: 30rpx 0" formType="reset">重置</button>
+      </view>
+    </form>
+</view>

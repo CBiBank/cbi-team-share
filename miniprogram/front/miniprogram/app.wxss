@@ -1,0 +1,51 @@
+.flex {
+  display: flex;
+}
+.align-center {
+  align-items: center;
+}
+
+.font-sm {
+  font-size: 12px;
+}
+.font-md {
+  font-size: 14px;
+}
+.font-lg {
+  font-size: 16px;
+}
+.font-xl {
+  font-size: 18px;
+}
+.font-xxl {
+  font-size: 20px;
+}
+.font-md {
+  font-size: 14px;
+}
+
+.just-center {
+  justify-content: center;
+}
+.just-space-between {
+  justify-content: space-between;
+}
+.just-space-around {
+  justify-content: space-around;
+}
+.text-align-left {
+  text-align: left;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.padding-left-10 {
+  padding-left: 10rpx;
+}
+
