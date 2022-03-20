@@ -54,9 +54,18 @@ function observe(obj) {
   })
 }
 
-class Observer {
-  constructor(value) {
-    
+const obj = {
+  foo: 'foo',
+  bar: 'bar',
+  abc: {
+    ls: {
+      ls1: '111'
+    }
   }
 }
-
+observe(obj)
+// obj.abc
+// obj.abc.ls
+// set(obj, 'xxx', '1111143333')
+// obj.xxx
+// obj.xxx = '22222'
