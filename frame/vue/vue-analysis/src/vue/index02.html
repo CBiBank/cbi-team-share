@@ -1,13 +1,16 @@
 <div id="app">
   <p>{{counter}}</p>
+  <p k-text="counter"></p>
+  <p k-html="des"></p>
 </div>
 
 <script src="./kVue.js"></script>
 <script>
- const app = new Vue({
+ const app = new KVue({
   el:'#app',
   data: {
-    counter: 1
+    counter: 1,
+    des: '<span style="color: red">123</span>'
   },
  })
  setInterval(() => {
