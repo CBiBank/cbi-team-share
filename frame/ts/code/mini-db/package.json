@@ -1,0 +1,16 @@
+{
+  "name": "mini-db",
+  "version": "1.0.0",
+  "description": "a demo db",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "tsc -c",
+    "build": "rm -rf ./lib && tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.6.4"
+  }
+}
