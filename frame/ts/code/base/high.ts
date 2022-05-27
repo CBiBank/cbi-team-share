@@ -1,7 +1,7 @@
 type MENU = "MENU" | "BUTTON";
 
 type MaybeNull<T> = {
-    [k in keyof T]: null | T[k]
+    [k in keyof T]: T[k] | null
 }
 
 interface Data {
@@ -15,14 +15,13 @@ interface Data {
   showOrder: number;
   createTime: string;
   updateTime: string;
-  childList: Data[] | undefined;
+  childList: Data[] | null;
 }
 
-type MyData = MaybeNull<Data>
 
 interface IResponse {
   code: string;
-  data: Data;
+  data: MaybeNull<Data>;
   msg: string;
 }
 
@@ -57,18 +56,19 @@ const response: IResponse = {
             showOrder: 100,
             createTime: "2019-12-04 02:45:36",
             updateTime: "2019-12-04 02:45:36",
-            childList: []
+            childList: null
         }
     ],
   },
 };
 
+response.data.id?.toFixed()
 
 response.data.childList.forEach(item => {
-    item.childList
+    item.childList.forEach
 })
 
 
 const response2 = {} as IResponse
 
-response2.data.childList
+response2.data.childLists
