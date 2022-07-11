@@ -98,7 +98,7 @@ Build API 主要用来进行项目打包，包括 build、buildSync 和 serve �
 
 # 插件开发
 
-> plugin-dev 文件夹
+> esbuild/plugin-dev 文件夹
 
 插件开发其实就是基于原有的体系结构中进行扩展和自定义。 Esbuild 插件也不例外，通过 Esbuild 插件我们可以扩展 Esbuild 原有的路径解析、模块加载等方面的能力，并在 Esbuild 的构建过程中执行一系列自定义的逻辑
 
