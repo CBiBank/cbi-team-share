@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>v-model</title>
+  
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // 2.x写法 https://v3.cn.vuejs.org/guide/migration/v-model.html#_2-x-%E8%AF%AD%E6%B3%95
+    // 3.x写法
+    // 单个v-model写法
+    // const app = Vue.createApp({
+    //   setup() {
+    //     const { ref } = Vue
+    //     const pageTitle = ref('123')
+    //     return {
+    //       pageTitle
+    //     }
+    //   },
+    //   template: `
+    //     <ChildComponent v-model="pageTitle" />
+    //   `
+    // })
+
+    // app.component('ChildComponent', {
+    //   props: ['modelValue'],
+    //   methods: {
+    //     handleClick() {
+    //       this.$emit('update:modelValue', this.modelValue + 'test') // 以前是 `this.$emit('input', title)`
+    //     }
+    //   },
+    //   template: `
+    //     <p @click="handleClick">{{ modelValue }}</p>
+    //   `
+    // })
+    // 多个v-model写法
+    const app = Vue.createApp({
+      setup() {
+        const { ref } = Vue
+        const pageTitle = ref('123')
+        const counter = ref(2)
+        return {
+          pageTitle,
+          counter
+        }
+      },
+      template: `
+        <ChildComponent v-model:pageTitle="pageTitle" v-model:counter="counter" />
+      `
+    })
+
+    app.component('ChildComponent', {
+      props: ['pageTitle', 'counter'],
+      methods: {
+        handleClick() {
+          this.$emit('update:pageTitle', this.pageTitle + 'test')
+          this.$emit('update:counter', this.counter + 3)
+        }
+      },
+      template: `
+        <p @click="handleClick">
+          {{ pageTitle }} - {{ counter }}
+        </p>
+      `
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+</html>

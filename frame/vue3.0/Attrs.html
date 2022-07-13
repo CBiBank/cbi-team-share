@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue</title>
+
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    // 2.0 https://v3.cn.vuejs.org/guide/migration/attrs-includes-class-style.html#%E6%A6%82%E8%A7%88
+    // Vue 2 的虚拟 DOM 实现对 class 和 style attribute 有一些特殊处理。因此，与其它所有 attribute 不一样，它们没有被包含在 $attrs 中
+    
+    const app = Vue.createApp({
+      data() {
+        return {
+          obj: {}
+        }
+      },
+      methods: {
+        handleClose() {
+          alert(123)
+        }
+      },
+      template: `
+        <ChildComponent id="testid" class="test-class" @onClose="handleClose" />
+      `
+    })
+    app.component('ChildComponent', {
+      template: `
+        <div>
+          我是子组件
+          <p v-bind="$attrs" @click="$emit('onClose')">1111111</p>
+        </div>
+      `
+    })
+    
+    app.mount('#app')
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleport</title>
+
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const app = Vue.createApp({
+      setup(props, context) {
+        const { ref, toRefs, reactive, watch, watchEffect } = Vue
+        const inputValue = ref('')
+        const inputValue1 = ref('')
+        const inputObj = reactive({ name: 'dell' })
+
+        // watch([inputValue, inputValue1, () => inputObj.name], ([currentValue, currentValue1, currName], [valuePreValue, value1PreValue, preName]) => {
+        //   console.log(currentValue, valuePreValue, '-----', currentValue1, value1PreValue, '--', currName, preName)
+        // })
+        // 强制开启深度监听，造成资源浪费，最好是精度监听
+        // watch(inputObj, (currName, preName) => {
+        //   console.log(currName, preName)
+        // }, { deep: true, immediate: true })
+
+        // 立即执行
+        // 不需要传需要侦听的内容，自动会感知代码的依赖
+        // 不能获取之前的数据值
+        watchEffect(() => {
+          console.log(inputObj.name)
+        })
+
+        // 直接解构出来的数据不是响应式的，只有通过toRefs将结构的数据转化为proxy才可以响应式
+        const { name } = toRefs(inputObj)
+
+        return {
+          inputValue,
+          inputValue1,
+          inputObj,
+          name
+        }
+      },
+      template: `
+        <div class="area">
+          <input v-model="inputValue" />
+          <input v-model="inputValue1" />
+          <input v-model="inputObj.name" />
+          <p>{{ name }}</p>
+        </div>
+      `
+    }).mount('#app')
+  </script>
+</body>
+</html>

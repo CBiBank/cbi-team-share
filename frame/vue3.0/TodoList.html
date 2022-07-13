@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teleport</title>
+  
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const inputValueEffect = () => {
+      const { ref } = Vue
+      const inputValue = ref('')
+      const handleChangeInput = (e) => {
+        inputValue.value = e.target.value
+      }
+
+      return {
+        inputValue,
+        handleChangeInput
+      }
+    }
+    const inputAddEffect = () => {
+      const { reactive } = Vue
+      const inputList = reactive([])
+
+      const handleAdd = (e) => {
+        inputList.push(e)
+      }
+
+      return {
+        inputList,
+        handleAdd
+      }
+    }
+
+    const app = Vue.createApp({
+      setup() {
+        const { inputValue, handleChangeInput } = inputValueEffect()
+        const { inputList, handleAdd } = inputAddEffect()
+
+        return {
+          inputValue,
+          inputList,
+          handleChangeInput,
+          handleAdd
+        }
+      },
+      template: `
+        <div class="area">
+          <input :value="inputValue" @input="handleChangeInput" />
+          <button @click="() => handleAdd(inputValue)">增加</button>
+          <p>{{ inputValue }}</p>
+
+          <ul>
+            <li v-for="(item, index) in inputList" :key="index">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      `
+    }).mount('#app')
+  </script>
+</body>
+</html>
