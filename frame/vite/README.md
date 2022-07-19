@@ -2,17 +2,19 @@
 
 [https://github.com/vitejs/vite](./https://github.com/vitejs/vite)
 
-# 环境搭建
+# 开发环境
 
-[Environment](./doc/Environment/Environment.md)
+## 环境搭建
 
-# 代码规范
+[Environment](./doc/development/environment/Environment.md)
 
-[CodeStandard](./doc/CodeStandard.md)
+## 代码规范
 
-# 处理静态资源
+[CodeStandard](./doc/development/CodeStandard.md)
 
-[StaticResources](./doc/StaticResources.md)
+## 处理静态资源
+
+[StaticResources](./doc/development/StaticResources.md)
 
 # 生产优化
 
@@ -41,6 +43,7 @@
 # HMR
 
 [HMR](./doc/build/HMR.md)
+
 # ESM
 
 [ESM](./doc/build/ESM.md)
