@@ -37,3 +37,14 @@
 ## Rollup
 
 [Rollup](./doc/build/Rollup.md)
+
+# HMR
+
+[HMR](./doc/build/HMR.md)
+# ESM
+
+[ESM](./doc/build/ESM.md)
+
+# MF
+
+[MF](./doc/build/MF.md)
