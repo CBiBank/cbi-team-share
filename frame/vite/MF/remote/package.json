@@ -1,0 +1,21 @@
+{
+  "name": "remote",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview --port=30001 --strictPort"
+  },
+  "dependencies": {
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@originjs/vite-plugin-federation": "^1.1.7",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "esbuild-darwin-arm64": "^0.14.49",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.1",
+    "vue-tsc": "^0.38.8"
+  }
+}
