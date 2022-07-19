@@ -26,9 +26,9 @@
 
 [Code Splitting](./doc/prodOptimization/CodeSplitting.md)
 
-# 预构建
+## 配置项
 
-[PreBuild](./doc/build/PreBuild.md)
+[Degrade&Polyfill](./doc/prodOptimization/Degrade&Polyfill.md)
 
 # 双引擎架构
 
@@ -39,6 +39,10 @@
 ## Rollup
 
 [Rollup](./doc/build/Rollup.md)
+
+## 预构建
+
+[PreBuild](./doc/build/PreBuild.md)
 
 # HMR
 
@@ -51,3 +55,7 @@
 # MF
 
 [MF](./doc/build/MF.md)
+
+# SSR
+
+[SSR](./doc/build/SSR.md)

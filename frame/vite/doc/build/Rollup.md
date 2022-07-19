@@ -346,3 +346,7 @@ apply(config, { command }) {
   enforce: "pre";
 }
 ```
+
+# 插件容器
+
+[源码地址](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/pluginContainer.ts)

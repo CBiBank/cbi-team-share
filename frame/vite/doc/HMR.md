@@ -260,3 +260,7 @@ import.meta.hot.on('custom-update', (data) => {
   // 自定义更新逻辑
 })
 ```
+
+# 创建依赖图
+
+[源码地址](https://github.com/vitejs/vite/blob/main/packages/vite/src/node/server/moduleGraph.ts)
