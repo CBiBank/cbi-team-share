@@ -180,8 +180,8 @@ export default {
 
 当然，我们也可以通过 manualChunks 参数进行自定义配置：
 
-```json
-{
+```ts
+export default {
   build: {
     rollupOptions: {
       output: {
@@ -195,15 +195,18 @@ export default {
           'library': ['antd'],
         },
         // 2. 函数配置
-          if (id.includes('antd') || id.includes('@arco-design/web-react')) {
-            return 'library';
-          }
-          if (id.includes('lodash')) {
-            return 'lodash';
-          }
-          if (id.includes('react')) {
-            return 'react';
-          }
+        if (id.includes('antd') || id.includes('@arco-design/web-react')) {
+          return 'library';
+        }
+        if (id.includes('lodash')) {
+          return 'lodash';
+        }
+        if (id.includes('react')) {
+          return 'react';
+        }
+        if (id.includes('vue')) {
+          return 'vue';
+        }
       },
     }
   },
