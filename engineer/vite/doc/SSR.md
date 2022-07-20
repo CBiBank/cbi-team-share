@@ -48,7 +48,7 @@ console.log(styles);
 
 1.  项目骨架
 
-> ssr -> [vite-ssr](../../ssr/vite-ssr/)
+> ssr -> [vite-ssr](../../../frame/ssr/vite-ssr/)
 
 其中涉及到两个额外的工具:
 
