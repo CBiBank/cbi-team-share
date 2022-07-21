@@ -87,6 +87,175 @@ webppack 的打包非常复杂，但是大致可分为四步：
 工具类配置内聚性较强，通常一个配置项专注于解决一类工程问题，配置项按其功能简单分类如下：
 
 ![](./img/1.png)
+
 虽然 Webpack 提供了上百项复杂配置，但大体上都可以归类为流程类配置或工具类配置，对于流程类配置应该多关注它们对编译主流程的影响；而工具类则更加内聚，基本上一种配置项解决一种工程化问题。
 
 除了上面提到的属性外，Webpack 还提供了诸如 amd、bail、dependencies 等配置项，但使用频率较低
+
+### 配置逻辑综合解析
+
+```
+├── src
+|   └── index.js
+└── webpack.config.js
+```
+
+其中，src/index.js 为项目入口文件，webpack.config.js 为 Webpack 配置文件。在配置文件中，首先我们需要声明项目入口：
+
+```js
+// webpack.config.js
+module.exports = {
+  entry: "./src/index",
+};
+```
+
+之后，还需要声明产物输出路径：
+
+```js
+const path = require("path");
+
+module.exports = {
+  entry: "./src/index",
+  output: {
+    filename: "[name].js",
+    path: path.join(__dirname, "./dist"),
+  },
+};
+```
+
+至此，已经足够驱动一个最简单项目的编译工作。但是，在前端项目中经常需要处理 JS 之外的其它资源，包括 css、ts、图片等，此时需要为这些资源配置适当的加载器
+
+```js
+const path = require("path");
+
+module.exports = {
+  entry: "./src/index",
+  output: {
+    filename: "[name].js",
+    path: path.join(__dirname, "./dist"),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/i,
+        include: {
+          and: [path.join(__dirname, "./src/")],
+        },
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "less-loader",
+          },
+        ],
+      },
+    ],
+  },
+};
+```
+
+到这里已经是一个简单但足够完备的配置结构了，接下来还可以根据需要使用其它工程化工具，例如使用 devtool 生成 Sourcemap 文件；使用 watch 持续监听文件变化并随之重新构建
+
+## 脚手架工具
+
+上述概览只是对从流程角度对 Webpack 配置项做了一个简单的分类总结，实际应用中往往需要牵涉更多 Loader、Plugin，加之性能、效率方面的考虑，配置复杂度往往会随项目推进而极速膨胀，届时配置管理会变得比较困难。为此，社区提供了许多用于快捷管理配置的工具，包括：
+
+- Vue CLI：用于帮助用户快速创建、运行 Vue.js 项目脚手架的命令行工具；
+- create-react-app：用于创建 React 项目脚手架的命令行工具；
+- @angular/cli：用于创建 angular 项目的命令行工具；
+- webpack-cli：Webpack 官方提供的命令行工具，提供了一套交互式生成配置文件的指令集，以及项目编译、开发、迁移等功能；
+- Neutrino：用于快速创建、运行现代 JavaScript 应用的工具，同时支持 React、Preact、Vue、Web、Node.js、Library 等场景；
+- react-starter-kit：用于创建 React + Relay + GraphQL 应用的脚手架工具，内置 SSR 支持。
+
+这些工具都内置了许多开箱即用的工程化能力，开发者无需从 0 开始学习 Webpack 与各种工程化组件，就可以直接使用工具一键生成足够应对中小型项目需求的工程化环境
+
+### Vue CLI
+
+Vue CLI 全称 Vue.js Command-Line Interface，是由 Vue 核心团队开发，用于帮助用户快速创建、运行 Vue.js 项目脚手架的命令行工具。实现上，Vue CLI 底层调用 Webpack 实现针对 .vue 等资源的编译打包功能；调用 webpack-dev-server 实现包含 HMR 功能的开发服务器功能；还能通过插件方式整合 ESLint、Babal、Less 等工具。
+
+安装与使用过程不在表述
+
+它的底层依赖于 Webpack 实现编译打包等工程化能力，开发者可通过 configureWebpack 与 chainWebpack 配置项修改 Webpack 配置信息。
+
+以 configureWebpack 为例，使用时需要在 vue.config.js 文件中写入配置：
+
+```js
+// vue.config.js
+module.exports = {
+  configureWebpack: {
+    plugins: [new MyAwesomeWebpackPlugin()],
+  },
+};
+```
+
+configureWebpack 的配置规则与 Webpack 一致，同样支持 plugins/module/resolve 等配置项。实际上，Vue CLI 内部最终会调用 webpack-merge 将 configureWebpack 值与其它上下文配置合并，生成最终的 Webpack 配置信息。
+
+chainWebpack 的用法与 configureWebpack 一致，区别仅在于此处支持 webpack-chain 语法 —— 即以函数方式链式修改 Webpack 配置：
+
+```js
+module.exports = {
+  chainWebpack: (config) => {
+    config.module
+      .rule("vue")
+      .use("vue-loader")
+      .tap((options) => {
+        // 改动options操作
+        return options;
+      });
+  },
+};
+```
+
+Vue CLI 在 Webpack 基础上包装多一层更易用的功能结构，这确实能极速提升研发效率与体验，但代价则是我们完全不清楚其内部运作细节，这会导致开发者比较难做一些深度定制或者性能优化，此时可使用 inspect 命令生成完整的 Webpack 配置信息：
+
+```
+vue inspect > output.js
+```
+
+外，inspect 还提供许多根据不同条件生成配置的参数，例如针对编译环境生成配置：
+
+```
+vue inspect --mode production > output.prod.js
+```
+
+更多用法，可查阅帮助文档：
+
+```
+vue inspect --help
+```
+
+### 使用 CRA 搭建项目脚手架
+
+CRA 全称 Create React Application，同样是用于帮助用户快速创建、运行 React 项目脚手架的命令行工具，功能、底层实现、用法都与 Vue CLI 相似，都提供了全套开箱即用的 React 项目开发、调试环境。
+
+CRA 用法同样简单：
+
+```
+npx create-react-app my-app
+```
+
+执行完毕后，生成项目文件：
+
+```
+
+my-app
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│   ├── favicon.ico
+│   ├── index.html
+│   └── manifest.json
+└── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── serviceWorker.js
+    └── setupTests.js
+```
+
+> [官网](https://github.com/facebook/create-react-app)
