@@ -259,3 +259,39 @@ my-app
 ```
 
 > [官网](https://github.com/facebook/create-react-app)
+
+默认规则创建的脚手架包含如下工程能力：
+
+- JSX、ES6、TypeScript、Flow 语法支持
+- CSS 自动添加 --webkit-- 前缀
+- 基于 Jest 的自动化测试能力
+- 支持 HMR 的开发服务器
+- 等等
+
+必要时，读者也可以通过 npm run eject 命令导出完整的项目配置结构，会展示内置 webpack 配置，可进行自定义开发，直接修改 webpack.config.js 等相关配置文件即可控制各项功能行为。但是要注意，此过程不可逆。即展示配置项后，不可再隐藏
+
+```
+my-app
+├─ .gitignore
+├─ README.md
+├─ config
+│  ├─ env.js
+│  ├─ getHttpsConfig.js
+│  ├─ jest
+│  │  ├─ babelTransform.js
+│  │  ├─ cssTransform.js
+│  │  └─ fileTransform.js
+│  ├─ modules.js
+│  ├─ paths.js
+│  ├─ webpack
+│  │  └─ persistentCache
+│  │     └─ createEnvironmentHash.js
+│  ├─ webpack.config.js
+│  └─ webpackDevServer.config.js
+├─ package-lock.json
+├─ package.json
+├─ node_modules
+├─ ...
+└─ src
+   ├─ ...
+```
