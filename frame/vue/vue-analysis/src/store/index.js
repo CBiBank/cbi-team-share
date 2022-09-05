@@ -1,15 +1,20 @@
 import Vue from 'vue'
-import Vuex from './kvuex'
+// import Vuex from './kvuex'
+import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     count: 0,
+    lang: 'zh-CN'
   },
   mutations: {
     add(state) {
       state.count ++;
+    },
+    setLang(state, value) {
+      state.lang = value || 'zh-CN'
     }
   },
   actions: {
