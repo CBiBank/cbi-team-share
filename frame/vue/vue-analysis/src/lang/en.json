@@ -1,5 +1,5 @@
 {
   "首页": "Home",
-  "intro": "I am {name}，I am {age} years old",
-  "intro2": "I am <span class='name'>{name}</span>，I am {age} years old"
+  "intro": "I am {name}, {age}",
+  "intro2": "I am <span class='name'>{name}</span>, {age}"
 }

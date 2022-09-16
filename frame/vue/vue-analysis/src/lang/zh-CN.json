@@ -1,5 +1,5 @@
 {
   "首页": "首页",
-  "intro": "我叫{name}，今年{age}岁",
-  "intro2": "我叫<span class='name'>{name}</span>，今年{age}岁"
+  "intro": "我叫{name}, 年龄{age}",
+  "intro2": "我叫<span class='name'>{name}</span>, 年龄{age}"
 }
